@@ -1,0 +1,79 @@
+class Ball{
+  float x, y;
+  float vx, vy;
+  float size=10;
+  color c;
+  
+  Ball(float x, float y) {
+    this.x=x;
+    this.y=y;
+    c=color(random(255),255,255);
+    vx=random(1);
+    vy=random(1);
+  }
+  void draw(){
+    noStroke();
+    fill(c);
+    ellipse(x,y,size*2,size*2);
+  }
+  void move(){
+    x+=vx;
+    y+=vy;
+    if(x<size||x>width-size){
+      vx=-vx;
+    }
+    if(y<size||y>height-size){
+      vy=-vy;
+    }
+  }
+}
+
+class Paddle{
+  float x,y;
+  float vy;
+  float height=50;
+  float width=10;
+  color d;
+  
+  Paddle(float x, float y){
+    this.x=x;
+    this.y=y;
+    d=color(0);
+    vy=(1);
+  }
+  void draw(){
+    noStroke();
+    fill(d);
+    rect(x,y,width,height);
+  }
+  void move(){
+    y+=vy;
+    if(y<0||y>450){
+      vy=-vy;
+    }
+  }
+}
+    
+    Ball b1;
+    Paddle p1;
+    Paddle p2;
+    
+    void setup(){
+      size(500,500);
+      colorMode(HSB);
+      
+      b1=new Ball(250,250);
+      p1=new Paddle(10,20);
+      p2=new Paddle(480,20);
+    }
+    void draw(){
+      background(255);
+      b1.draw();
+      b1.move();
+      
+      p1.draw();
+      p1.move();
+      
+      p2.draw();
+      p2.move();
+    }
